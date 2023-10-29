@@ -1,6 +1,6 @@
 # otel-env-context
 
-`exec.Command`などで外部コマンドを呼び出す際に環境変数を用いてW3C Trace Context形式でトレースコンテキストを伝搬させる例
+`exec.Command`などで外部コマンドを呼び出す際に環境変数を用いてW3C TraceContext形式でトレースコンテキストを伝搬させる例
 
 ## 実行方法
 
@@ -39,8 +39,8 @@ otel.Tracer(instrumentationName).Start(context.Background(), "parent")
 
 `otel-parent`は子コマンド`otel-child`を呼び出します。  
 
-この際、`otel-parent`のトレースコンテキストをW3C Trace Context形式で環境変数に指定することでコマンド`otel-child`を伝搬します。
-W3C Trace Context形式への変換は`propagation.TraceContext`に任せます。
+この際、`otel-parent`のトレースコンテキストをW3C TraceContext形式で環境変数に指定することでコマンド`otel-child`を伝搬します。
+W3C TraceContext形式への変換は`propagation.TraceContext`に任せます。
 
 子コマンドへの環境変数の指定は以下のように行います。
 
