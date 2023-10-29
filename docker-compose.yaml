@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  otel-env-context:
+    build: .
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger-all-in-one:4317"
+    depends_on:
+      - jaeger-all-in-one
+
+  jaeger-all-in-one:
+    image: jaegertracing/all-in-one:latest
+    restart: always
+    ports:
+      - "16686:16686"
