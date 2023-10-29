@@ -28,9 +28,8 @@ func doSomething() {
 		"traceparent": os.Getenv("traceparent"),
 		"tracestate":  os.Getenv("tracestate"),
 	}
-	ctx, span := otel.Tracer(instrumentationName).Start(
-		otel.GetTextMapPropagator().Extract(context.Background(), envCarrier),
-		"child")
+	parentCtx := otel.GetTextMapPropagator().Extract(context.Background(), envCarrier)
+	ctx, span := otel.Tracer(instrumentationName).Start(parentCtx, "child")
 	defer span.End()
 
 	log.Printf("child: SpanID: %s", trace.SpanContextFromContext(ctx).SpanID())
